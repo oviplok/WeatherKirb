@@ -7,29 +7,20 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.example.kotlinweather.data.WeatherInfo
+import com.example.kotlinweather.data.WeatherInfoMockup
 import com.example.kotlinweather.mainweatherscreen.MainWeatherScreen
 import com.example.kotlinweather.ui.theme.KotlinWeatherTheme
-import kotlin.random.Random
 
 
-//val rightNow = Calendar.getInstance()
-//val currentHOUR: Int = rightNow.get(Calendar.HOUR_OF_DAY)
-//val currentDAY: Int = rightNow.get(Calendar.DAY_OF_MONTH)
-//val StatusShort: String = "Mostly Sunny"
-//val StatusLong: String = "Sunny Condition will continue all day. Wind gusts are up to 7 mph."
+
 
 class MainActivity : ComponentActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val weatherInfo = WeatherInfo()
+        val weatherInfoMockup = WeatherInfoMockup()
 
-        weatherInfo.StatusShort = "Mostly Sunny"
-        weatherInfo.StatusLong = "Sunny Condition will continue all day. Wind gusts are up to 7 mph."
         setContent {
             KotlinWeatherTheme {
                 // A surface container using the 'background' color from the theme
@@ -37,27 +28,28 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainWeatherScreen("Moscow",
-                        "+21",
-                        weatherInfo.StatusShort,
-                        weatherInfo.StatusLong,
-                        weatherInfo.currentHOUR,
-                        weatherInfo.currentHOUR,
-                        temeperatureHourList())
+                    MainWeatherScreen(weatherInfoMockup.city,
+                        weatherInfoMockup.currentTemperature,
+                        weatherInfoMockup.statusShort,
+                        weatherInfoMockup.statusLong,
+                        weatherInfoMockup.currentHOUR,
+                        weatherInfoMockup.currentHOUR,
+                        weatherInfoMockup.hourTemperatureList(),
+                        weatherInfoMockup.WeekTemperatureList())
                 }
             }
         }
     }
 
-    private fun temeperatureHourList(): MutableList<String> {
-        val list = mutableListOf<String>() // Create an empty list to store the decimal numbers
-
-        // Add 24 random decimal numbers to the list
-        repeat(24) {
-            val randomDecimal = Random.nextDouble()
-            list.add(randomDecimal.toInt().toString())
-        }
-        return list
-    }
+//    private fun temeperatureHourList(): MutableList<String> {
+//        val list = mutableListOf<String>() // Create an empty list to store the decimal numbers
+//
+//        // Add 24 random decimal numbers to the list
+//        repeat(24) {
+//            val randomDecimal = Random.nextDouble()
+//            list.add(randomDecimal.toInt().toString())
+//        }
+//        return list
+//    }
 }
 
