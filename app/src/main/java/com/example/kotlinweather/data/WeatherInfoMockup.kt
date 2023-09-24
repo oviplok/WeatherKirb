@@ -7,7 +7,7 @@ import java.util.Calendar
 import java.util.Locale
 import kotlin.random.Random
 
-class WeatherInfoMockup() {
+class WeatherInfoMockup {
 
     private val rightNow: Calendar = Calendar.getInstance()
 
@@ -30,9 +30,16 @@ class WeatherInfoMockup() {
     )
 
     private fun getDayOfWeek(rep: Int): String {
-        val date: LocalDate = LocalDate.now().plusDays(rep.toLong())
-        val dow: DayOfWeek = date.getDayOfWeek()
-        val dayName = dow.getDisplayName(TextStyle.SHORT, Locale.ENGLISH)
+        var dayName: String = "Today"
+        if (rep==0){
+
+        }
+        else{
+            val date: LocalDate = LocalDate.now().plusDays(rep.toLong())
+            val dow: DayOfWeek = date.getDayOfWeek()
+            dayName = dow.getDisplayName(TextStyle.SHORT, Locale.ENGLISH)
+        }
+
         return dayName
     }
 

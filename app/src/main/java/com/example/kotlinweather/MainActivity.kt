@@ -1,14 +1,23 @@
 package com.example.kotlinweather
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.core.view.WindowCompat
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
 import com.example.kotlinweather.data.WeatherInfoMockup
-import com.example.kotlinweather.mainweatherscreen.MainWeatherScreen
+import com.example.kotlinweather.ui.mainweather.MainWeatherScreen
+import com.example.kotlinweather.ui.navigation.BottomNavigation
+import com.example.kotlinweather.ui.navigation.MainScreen
 import com.example.kotlinweather.ui.theme.KotlinWeatherTheme
 
 
@@ -20,6 +29,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val weatherInfoMockup = WeatherInfoMockup()
+        WindowCompat.setDecorFitsSystemWindows(window,false)
 
         setContent {
             KotlinWeatherTheme {
@@ -28,28 +38,12 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainWeatherScreen(weatherInfoMockup.city,
-                        weatherInfoMockup.currentTemperature,
-                        weatherInfoMockup.statusShort,
-                        weatherInfoMockup.statusLong,
-                        weatherInfoMockup.currentHOUR,
-                        weatherInfoMockup.currentHOUR,
-                        weatherInfoMockup.hourTemperatureList(),
-                        weatherInfoMockup.WeekTemperatureList())
+                    MainScreen()
+                    //MainWeatherScreen(weatherInfoMockup)
                 }
             }
         }
     }
 
-//    private fun temeperatureHourList(): MutableList<String> {
-//        val list = mutableListOf<String>() // Create an empty list to store the decimal numbers
-//
-//        // Add 24 random decimal numbers to the list
-//        repeat(24) {
-//            val randomDecimal = Random.nextDouble()
-//            list.add(randomDecimal.toInt().toString())
-//        }
-//        return list
-//    }
 }
 

@@ -1,17 +1,27 @@
-package com.example.kotlinweather.mainweatherscreen
+package com.example.kotlinweather.ui.mainweather
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Share
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,17 +39,20 @@ import com.example.kotlinweather.data.WeatherInfoMockup
 import com.example.kotlinweather.ui.theme.KotlinWeatherTheme
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainWeatherScreen(
-    city: String,
-    temperature: String,
-    shortStatus: String,
-    longStatus: String,
-    currentHour: Int,
-    currentDay: Int,
-    hourTList: MutableList<String>,
-    weekTList: MutableList<WeatherInfoMockup.WeekTemperature>
+    weatherInfoMockup: WeatherInfoMockup,
 ) {
+    val city: String = weatherInfoMockup.city.toString()
+    val temperature: String = weatherInfoMockup.currentTemperature
+    val shortStatus: String = weatherInfoMockup.statusShort
+    val longStatus: String = weatherInfoMockup.statusLong
+    val currentHour: Int=  weatherInfoMockup.currentHOUR
+    val currentDay: Int = weatherInfoMockup.currentDAY
+    val hourTList: MutableList<String> = weatherInfoMockup.hourTemperatureList()
+    val weekTList: MutableList<WeatherInfoMockup.WeekTemperature> = weatherInfoMockup.WeekTemperatureList()
+
     Column(modifier = Modifier
         .fillMaxWidth()
         .paint(
@@ -52,19 +65,18 @@ fun MainWeatherScreen(
         Text(
             text = city,
             color = Color.White,
-            fontSize = 30.sp,
+            fontSize = 25.sp,
             modifier = Modifier
                 .padding(top = 20.dp))
 
 
         Text(text = temperature,
             fontSize = 100.sp,
-            modifier = Modifier
-                .padding(top = 15.dp),
+            modifier = Modifier.padding(top = 15.dp),
             color = Color.White)
 
         Text(text = shortStatus,
-            fontSize = 30.sp,
+            fontSize = 25.sp,
             modifier = Modifier,
             color = Color.White)
 
@@ -100,7 +112,12 @@ fun MainWeatherScreen(
             weekListTab(weekTList)
 
     }
+    //return MainWeatherScreen(weatherInfoMockup = weatherInfoMockup)
 }
+
+
+
+
 
 
 @Composable
@@ -170,7 +187,7 @@ fun HourWeatherTab(item: String, currentHour: Int, rep: Int) {
     Column(modifier = Modifier.padding(horizontal = 20.dp),
         horizontalAlignment = Alignment.CenterHorizontally) {
 
-        Text(text = hour,
+        Text(text = hour+"h",
             color = Color.White)
 
         Image(
@@ -193,13 +210,16 @@ fun MainWeatherScreenPreview() {
     val weatherInfoMockup = WeatherInfoMockup()
 
     KotlinWeatherTheme {
-        MainWeatherScreen(weatherInfoMockup.city,
-            weatherInfoMockup.currentTemperature,
-            weatherInfoMockup.statusShort,
-            weatherInfoMockup.statusLong,
-            weatherInfoMockup.currentHOUR,
-            weatherInfoMockup.currentHOUR,
-            weatherInfoMockup.hourTemperatureList(),
-            weatherInfoMockup.WeekTemperatureList())
+        MainWeatherScreen(
+            weatherInfoMockup
+//            weatherInfoMockup.city,
+//            weatherInfoMockup.currentTemperature,
+//            weatherInfoMockup.statusShort,
+//            weatherInfoMockup.statusLong,
+//            weatherInfoMockup.currentHOUR,
+//            weatherInfoMockup.currentHOUR,
+//            weatherInfoMockup.hourTemperatureList(),
+//            weatherInfoMockup.WeekTemperatureList()
+        )
     }
 }
