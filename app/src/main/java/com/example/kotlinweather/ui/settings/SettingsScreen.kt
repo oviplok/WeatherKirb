@@ -1,22 +1,11 @@
 package com.example.kotlinweather.ui.settings
 
-import android.content.Context
-import android.preference.CheckBoxPreference
-import android.preference.PreferenceScreen
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material3.CheckboxColors
-import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -35,12 +24,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.preferencesDataStore
 import com.example.kotlinweather.R
-import com.jamal.composeprefs3.ui.prefs.CheckBoxPref
-import java.util.prefs.Preferences
-
+import com.example.kotlinweather.repository.model.SettingsData
 
 
 //val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
@@ -49,8 +34,8 @@ import java.util.prefs.Preferences
 @Preview
 @Composable
 fun Settings(){
-
-    var cityCurrent by rememberSaveable { mutableStateOf("Moscow") }
+    var settingsData = SettingsData()
+    var cityCurrent by rememberSaveable { mutableStateOf(settingsData.city) }
     val cityCheckedState = remember { mutableStateOf(true) }
 
     Column(modifier = Modifier

@@ -1,27 +1,18 @@
 package com.example.kotlinweather.ui.mainweather
 
+import MainWeatherViewModel
+import androidx.activity.viewModels
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Share
-import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -34,24 +25,30 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.kotlinweather.R
-import com.example.kotlinweather.data.WeatherInfoMockup
+import com.example.kotlinweather.repository.model.WeatherInfoMockup
 import com.example.kotlinweather.ui.theme.KotlinWeatherTheme
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainWeatherScreen(
-    weatherInfoMockup: WeatherInfoMockup,
+    viewModel: MainWeatherViewModel,
 ) {
-    val city: String = weatherInfoMockup.city.toString()
-    val temperature: String = weatherInfoMockup.currentTemperature
-    val shortStatus: String = weatherInfoMockup.statusShort
-    val longStatus: String = weatherInfoMockup.statusLong
-    val currentHour: Int=  weatherInfoMockup.currentHOUR
-    val currentDay: Int = weatherInfoMockup.currentDAY
-    val hourTList: MutableList<String> = weatherInfoMockup.hourTemperatureList()
-    val weekTList: MutableList<WeatherInfoMockup.WeekTemperature> = weatherInfoMockup.WeekTemperatureList()
+    val weatherInfoMockup: WeatherInfoMockup
+    val city: String = viewModel.city.toString()
+    val temperature: String = viewModel.temperature.toString()
+    val shortStatus: String = viewModel.shortStatus.toString()
+    val longStatus: String = viewModel.longStatus.toString()
+    val currentHour: Int= viewModel.currentHour.value!!.toInt()
+    val currentDay: Int = viewModel.currentDay.value!!.toInt()
+
+    val hourTList: List<String> = viewModel.hourTList.value!!.toList()
+    val  weekTList: List<WeatherInfoMockup.WeekTemperature> = viewModel.weekTList.value!!.toList()
+//    val hourTList: List<String> = weatherInfoMockup.hourTemperatureList()
+//    val weekTList: List<WeatherInfoMockup.WeekTemperature> = weatherInfoMockup.WeekTemperatureList()
 
     Column(modifier = Modifier
         .fillMaxWidth()
@@ -63,19 +60,19 @@ fun MainWeatherScreen(
     ){
 
         Text(
-            text = city,
+            text = viewModel.city.toString(),
             color = Color.White,
             fontSize = 25.sp,
             modifier = Modifier
                 .padding(top = 20.dp))
 
 
-        Text(text = temperature,
+        Text(text = viewModel.temperature.toString(),
             fontSize = 100.sp,
             modifier = Modifier.padding(top = 15.dp),
             color = Color.White)
 
-        Text(text = shortStatus,
+        Text(text = viewModel.shortStatus.toString(),
             fontSize = 25.sp,
             modifier = Modifier,
             color = Color.White)
@@ -90,7 +87,7 @@ fun MainWeatherScreen(
         ) {
 
             Text(
-                text = longStatus,
+                text = viewModel.longStatus.toString(),
                 color = Color.White,
                 modifier = Modifier.padding(horizontal = 10.dp)
             )
@@ -102,7 +99,7 @@ fun MainWeatherScreen(
             var rep: Int = 0
 
             LazyRow {
-                items(hourTList) { item ->
+                items(hourTList.get(rep).toInt()) { item ->
                     HourWeatherTab(item, currentHour, rep)
                     rep += 1
 
@@ -121,7 +118,7 @@ fun MainWeatherScreen(
 
 
 @Composable
-fun weekListTab(weekTList: MutableList<WeatherInfoMockup.WeekTemperature>) {
+fun weekListTab(weekTList: List<WeatherInfoMockup.WeekTemperature>) {
     Column(modifier = Modifier
         .fillMaxWidth()
         .padding(horizontal = 10.dp, vertical = 15.dp)
@@ -178,7 +175,7 @@ fun weekListTab(weekTList: MutableList<WeatherInfoMockup.WeekTemperature>) {
 
 
 @Composable
-fun HourWeatherTab(item: String, currentHour: Int, rep: Int) {
+fun HourWeatherTab(item: Int, currentHour: Int, rep: Int) {
     val hour = if (currentHour + rep > 24) {
         rep.toString()
     } else {
@@ -207,19 +204,12 @@ fun HourWeatherTab(item: String, currentHour: Int, rep: Int) {
 @Preview(showBackground = true)
 @Composable
 fun MainWeatherScreenPreview() {
+    val weatherViewModel: MainWeatherViewModel = viewModel()
     val weatherInfoMockup = WeatherInfoMockup()
 
     KotlinWeatherTheme {
         MainWeatherScreen(
-            weatherInfoMockup
-//            weatherInfoMockup.city,
-//            weatherInfoMockup.currentTemperature,
-//            weatherInfoMockup.statusShort,
-//            weatherInfoMockup.statusLong,
-//            weatherInfoMockup.currentHOUR,
-//            weatherInfoMockup.currentHOUR,
-//            weatherInfoMockup.hourTemperatureList(),
-//            weatherInfoMockup.WeekTemperatureList()
+            weatherViewModel
         )
     }
 }

@@ -1,28 +1,19 @@
 package com.example.kotlinweather
 
-import android.annotation.SuppressLint
-import android.content.Context
+import MainWeatherViewModel
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
-import androidx.datastore.core.DataStore
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.rememberNavController
-import com.example.kotlinweather.data.WeatherInfoMockup
-import com.example.kotlinweather.ui.mainweather.MainWeatherScreen
-import com.example.kotlinweather.ui.navigation.BottomNavigation
+import com.example.kotlinweather.repository.model.WeatherInfoMockup
 import com.example.kotlinweather.ui.navigation.MainScreen
 import com.example.kotlinweather.ui.theme.KotlinWeatherTheme
-import java.util.prefs.Preferences
-import androidx.datastore.preferences.preferencesDataStore
+
 
 
 class MainActivity : ComponentActivity() {

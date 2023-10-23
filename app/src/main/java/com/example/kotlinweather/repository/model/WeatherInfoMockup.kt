@@ -1,4 +1,4 @@
-package com.example.kotlinweather.data
+package com.example.kotlinweather.repository.model
 
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -8,11 +8,11 @@ import java.util.Locale
 import kotlin.random.Random
 
 class WeatherInfoMockup {
-
+    var settingsData = SettingsData()
     private val rightNow: Calendar = Calendar.getInstance()
 
 
-    fun hourTemperatureList(): MutableList<String> {
+    fun hourTemperatureList(): List<String> {
     val list = mutableListOf<String>()
 
     repeat(24)
@@ -43,7 +43,7 @@ class WeatherInfoMockup {
         return dayName
     }
 
-    fun WeekTemperatureList(): MutableList<WeekTemperature> {
+    fun WeekTemperatureList(): List<WeekTemperature> {
         val weekTlist = mutableListOf<WeekTemperature>()
         var rep : Int = 0
         repeat(7)
@@ -64,7 +64,7 @@ class WeatherInfoMockup {
             field = value
         }
 
-    var city: String = "Moscow"
+    var city: String = settingsData.city
         get() {
             return field
         }
