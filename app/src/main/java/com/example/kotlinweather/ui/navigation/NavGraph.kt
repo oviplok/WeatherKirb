@@ -4,6 +4,7 @@ import MainWeatherViewModel
 import androidx.compose.runtime.Composable
 
 import androidx.activity.viewModels
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -18,8 +19,10 @@ import com.example.kotlinweather.viewmodel.SettingsViewModel
 fun NavGraph(navHostController: NavHostController) {
     val navController = rememberNavController()
 
+//    val weatherViewModel = hiltViewModel<MainWeatherViewModel>()
+//    val settingsViewModel = hiltViewModel<SettingsViewModel>()
     val weatherViewModel: MainWeatherViewModel = viewModel()
-    val settingsViewModel: SettingsViewModel = viewModel()
+    //val settingsViewModel: SettingsViewModel = viewModel()
 
     NavHost(navController = navHostController, startDestination = "weather" ){
 
