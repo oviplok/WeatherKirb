@@ -1,6 +1,7 @@
 package com.example.kotlinweather.ui.mainweather
 
 import MainWeatherViewModel
+
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.compose.foundation.Image
@@ -40,10 +41,11 @@ fun MainWeatherScreen(
     //viewModel: MainWeatherViewModel,
     viewModel: MainWeatherViewModel = viewModel()
 ) {
+    //val weatherUiState by viewModel.weatherUiState.observeAsState()
 
     val uiState: WeatherUiState = viewModel.weatherUiState
-    Log.i("uiStatus: ",uiState.shortStatus )
-    Log.i("uiStatus: ",viewModel.weatherUiState.shortStatus )
+    Log.i("uiStatus: ",uiState.shortStatus)
+    Log.i("uiStatus: ",uiState.currentHour.toString() )
 //    val weatherInfoMockup: WeatherInfoMockup
 //    val city: String = viewModel.city.toString()
 //    val temperature: String = viewModel.temperature.toString()

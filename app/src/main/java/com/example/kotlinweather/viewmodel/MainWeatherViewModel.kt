@@ -19,9 +19,10 @@ import kotlinx.coroutines.launch
 public class MainWeatherViewModel() :
     ViewModel(){
 
-
+    //private val weatherUiState: MutableLiveData<WeatherUiState> = MutableLiveData()
     var weatherUiState by mutableStateOf(WeatherUiState())
     private set
+
     // LiveData для отображения информации о погоде
     // val weatherUiState: WeatherUiState = WeatherUiState()
     //    val city: MutableLiveData<String> = MutableLiveData()
@@ -55,7 +56,12 @@ public class MainWeatherViewModel() :
                     hourTList = weatherInfo.hourTemperatureList(),
                     weekTList = weatherInfo.WeekTemperatureList()
                     )
-                weatherUiState = newWeatherUiState;
+
+                viewModelScope.launch {
+                    weatherUiState = newWeatherUiState
+                }
+                //weatherUiState.postValue(newWeatherUiState)
+                //weatherUiState = newWeatherUiState;
 
                 Log.i("uiStatus_ViewModel: ",weatherInfo.statusShort )
 
@@ -71,7 +77,8 @@ public class MainWeatherViewModel() :
 //                hourTList.postValue(weatherInfo.hourTemperatureList())
 //                weekTList.postValue(weatherInfo.WeekTemperatureList())
             } catch (e: Exception) {
-                //return@launch Resource.Error("An unknown error occured:(")
+                Log.e("uiStatus_ViewModel: ","ERROR in ViewModel: ",e)
+                //return Resource.Error("An unknown error occured:(")
             }
         }
     }
