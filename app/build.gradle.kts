@@ -111,6 +111,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
 //
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
+    //implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
 //    // Coroutine Lifecycle Scopes
 //
@@ -119,11 +120,12 @@ dependencies {
 //    // Coil
 //
 //
-//    //Dagger - Hilt
-//    implementation("com.google.dagger:hilt-android:2.42")
-//    //kapt("com.google.dagger:hilt-compiler:2.42")
-//    implementation("com.google.dagger:hilt-android:2.45")
-//    //kapt("com.google.dagger:hilt-android-compiler:2.45")
+    //Dagger - Hilt
+    implementation("com.google.dagger:hilt-android:2.42")
+    //kapt("com.google.dagger:hilt-compiler:2.42")
+    implementation("com.google.dagger:hilt-android:2.45")
+    //kapt("com.google.dagger:hilt-android-compiler:2.45")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 //
 //
 //

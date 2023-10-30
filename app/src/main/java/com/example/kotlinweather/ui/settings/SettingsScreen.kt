@@ -24,8 +24,12 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.kotlinweather.R
 import com.example.kotlinweather.repository.model.SettingsData
+import com.example.kotlinweather.ui.state.SettingsUiState
+import com.example.kotlinweather.ui.state.WeatherUiState
+import com.example.kotlinweather.viewmodel.SettingsViewModel
 
 
 //val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
@@ -33,9 +37,11 @@ import com.example.kotlinweather.repository.model.SettingsData
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
-fun Settings(){
-    var settingsData = SettingsData()
-    var cityCurrent by rememberSaveable { mutableStateOf(settingsData.city) }
+fun Settings(viewModel: SettingsViewModel = viewModel()){
+    val uiState: SettingsUiState = viewModel.settingsUiState
+
+    //var settingsData = SettingsData()
+    var cityCurrent by rememberSaveable { mutableStateOf(uiState.city) }
     val cityCheckedState = remember { mutableStateOf(true) }
 
     Column(modifier = Modifier
