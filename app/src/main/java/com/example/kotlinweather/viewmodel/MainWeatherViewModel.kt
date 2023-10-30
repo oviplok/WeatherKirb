@@ -19,26 +19,11 @@ import kotlinx.coroutines.launch
 public class MainWeatherViewModel() :
     ViewModel(){
 
-    //private val weatherUiState: MutableLiveData<WeatherUiState> = MutableLiveData()
     var weatherUiState by mutableStateOf(WeatherUiState())
     private set
-
-    // LiveData для отображения информации о погоде
-    // val weatherUiState: WeatherUiState = WeatherUiState()
-    //    val city: MutableLiveData<String> = MutableLiveData()
-    //    val temperature: MutableLiveData<String> = MutableLiveData()
-    //    val shortStatus: MutableLiveData<String> = MutableLiveData()
-    //    val longStatus: MutableLiveData<String> = MutableLiveData()
-    //    val currentHour: MutableLiveData<Int> = MutableLiveData()
-    //    val currentDay: MutableLiveData<Int> = MutableLiveData()
-    //    val hourTList: MutableLiveData<List<String>> = MutableLiveData()
-    //    val weekTList: MutableLiveData<List<WeatherInfoMockup.WeekTemperature>> = MutableLiveData()
     private val weatherRepository: WeatherRepository = WeatherRepository()
 
-    // TODO: Не инициализирует VM 
     init {
-
-        // Загрузка данных о погоде при создании ViewModel
         fetchWeatherInfo()
     }
 
@@ -60,25 +45,11 @@ public class MainWeatherViewModel() :
                 viewModelScope.launch {
                     weatherUiState = newWeatherUiState
                 }
-                //weatherUiState.postValue(newWeatherUiState)
-                //weatherUiState = newWeatherUiState;
 
                 Log.i("uiStatus_ViewModel: ",weatherInfo.statusShort )
 
-
-//                city.value
-//                // Обновить LiveData с новыми значениями
-//                city.postValue(weatherInfo.city.toString())
-//                temperature.postValue(weatherInfo.currentTemperature)
-//                shortStatus.postValue(weatherInfo.statusShort)
-//                longStatus.postValue(weatherInfo.statusLong)
-//                currentHour.postValue(weatherInfo.currentHOUR)
-//                currentDay.postValue(weatherInfo.currentDAY)
-//                hourTList.postValue(weatherInfo.hourTemperatureList())
-//                weekTList.postValue(weatherInfo.WeekTemperatureList())
             } catch (e: Exception) {
                 Log.e("uiStatus_ViewModel: ","ERROR in ViewModel: ",e)
-                //return Resource.Error("An unknown error occured:(")
             }
         }
     }

@@ -38,26 +38,12 @@ import com.example.kotlinweather.ui.theme.KotlinWeatherTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainWeatherScreen(
-    //viewModel: MainWeatherViewModel,
     viewModel: MainWeatherViewModel = viewModel()
 ) {
-    //val weatherUiState by viewModel.weatherUiState.observeAsState()
 
     val uiState: WeatherUiState = viewModel.weatherUiState
     Log.i("uiStatus: ",uiState.shortStatus)
     Log.i("uiStatus: ",uiState.currentHour.toString() )
-//    val weatherInfoMockup: WeatherInfoMockup
-//    val city: String = viewModel.city.toString()
-//    val temperature: String = viewModel.temperature.toString()
-//    val shortStatus: String = viewModel.shortStatus.toString()
-//    val longStatus: String = viewModel.longStatus.toString()
-//    val currentHour: Int= viewModel.currentHour.value!!.toInt()
-//    val currentDay: Int = viewModel.currentDay.value!!.toInt()
-//
-//    val hourTList: List<String> = viewModel.hourTList.value!!.toList()
-//    val  weekTList: List<WeatherInfoMockup.WeekTemperature> = viewModel.weekTList.value!!.toList()
-//    val hourTList: List<String> = weatherInfoMockup.hourTemperatureList()
-//    val weekTList: List<WeatherInfoMockup.WeekTemperature> = weatherInfoMockup.WeekTemperatureList()
 
     Column(modifier = Modifier
         .fillMaxWidth()
