@@ -8,7 +8,7 @@ import java.util.Locale
 import kotlin.random.Random
 
 class WeatherInfoMockup {
-    var settingsData = SettingsData()
+    private var settingsData = SettingsData()
     private val rightNow: Calendar = Calendar.getInstance()
 
 

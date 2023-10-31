@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -94,14 +95,14 @@ fun MainWeatherScreen(
             var rep: Int = 0
 
             LazyRow {
-                items(uiState.hourTList.size) { item ->
-                    HourWeatherTab(item, uiState.currentHour, rep)
+                itemsIndexed(uiState.hourTList) { index, item ->
+                    HourWeatherTab(item.toInt(), uiState.currentHour,index)
                     rep += 1
 
                 }
             }
         }
-           // weekListTab(uiState.weekTList)
+           //weekListTab(uiState.weekTList)
 
     }
     //return MainWeatherScreen(weatherInfoMockup = weatherInfoMockup)
