@@ -3,7 +3,6 @@ package com.example.kotlinweather.ui.mainweather
 import MainWeatherViewModel
 
 import android.util.Log
-import androidx.activity.viewModels
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -28,10 +27,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.kotlinweather.R
-import com.example.kotlinweather.repository.model.WeatherInfoMockup
+import com.example.kotlinweather.repository.mockup.WeatherInfoMockup
 import com.example.kotlinweather.ui.state.WeatherUiState
 import com.example.kotlinweather.ui.theme.KotlinWeatherTheme
 

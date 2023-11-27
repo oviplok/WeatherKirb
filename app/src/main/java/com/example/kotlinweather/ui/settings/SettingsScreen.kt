@@ -26,9 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.kotlinweather.R
-import com.example.kotlinweather.repository.model.SettingsData
 import com.example.kotlinweather.ui.state.SettingsUiState
-import com.example.kotlinweather.ui.state.WeatherUiState
 import com.example.kotlinweather.viewmodel.SettingsViewModel
 
 

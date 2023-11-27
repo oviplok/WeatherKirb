@@ -1,4 +1,4 @@
-package com.example.kotlinweather.repository.model
+package com.example.kotlinweather.repository.mockup
 
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -8,7 +8,7 @@ import java.util.Locale
 import kotlin.random.Random
 
 class WeatherInfoMockup {
-    private var settingsData = SettingsData()
+    private var settingsData = SettingsDataMockup()
     private val rightNow: Calendar = Calendar.getInstance()
 
 

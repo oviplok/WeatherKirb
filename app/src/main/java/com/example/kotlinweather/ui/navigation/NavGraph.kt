@@ -22,7 +22,7 @@ fun NavGraph(navHostController: NavHostController) {
 //    val weatherViewModel = hiltViewModel<MainWeatherViewModel>()
 //    val settingsViewModel = hiltViewModel<SettingsViewModel>()
     val weatherViewModel: MainWeatherViewModel = viewModel()
-    //val settingsViewModel: SettingsViewModel = viewModel()
+    val settingsViewModel: SettingsViewModel = viewModel()
 
     NavHost(navController = navHostController, startDestination = "weather" ){
 
@@ -30,7 +30,7 @@ fun NavGraph(navHostController: NavHostController) {
             MainWeatherScreen(weatherViewModel)
         }
         composable("settings"){
-            Settings()
+            Settings(settingsViewModel)
         }
     }
 }

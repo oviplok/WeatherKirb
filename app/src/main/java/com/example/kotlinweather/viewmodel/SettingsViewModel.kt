@@ -1,12 +1,13 @@
 package com.example.kotlinweather.viewmodel
 
+import android.app.Application
 import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.kotlinweather.repository.WeatherRepository
+import com.example.kotlinweather.repository.room.WeatherRepository
 import com.example.kotlinweather.ui.state.SettingsUiState
 import kotlinx.coroutines.launch
 
@@ -14,10 +15,11 @@ public class SettingsViewModel(): ViewModel() {
 
     var settingsUiState by mutableStateOf(SettingsUiState())
         private set
-    private val weatherRepository: WeatherRepository = WeatherRepository()
+    private val weatherRepository: WeatherRepository
 
 
     init {
+        weatherRepository = WeatherRepository(application = Application())
         // Загрузка данных о погоде при создании ViewModel
         fetchSettings()
     }
@@ -25,7 +27,7 @@ public class SettingsViewModel(): ViewModel() {
     private fun fetchSettings(){
         viewModelScope.launch {
             try {
-            val settingsInfo = weatherRepository.getSettings()
+            val settingsInfo = weatherRepository.getMockupSettings()
             val newSettingsUiState: SettingsUiState = SettingsUiState(
                 city = settingsInfo.city)
 
