@@ -1,6 +1,6 @@
 package com.example.kotlinweather.ui.state
 
-import com.example.kotlinweather.repository.mockup.WeatherInfoMockup
+import com.example.kotlinweather.data.repository.mockup.WeatherInfoMockup
 
 data class  WeatherUiState(
     var city: String = "Moscow",
